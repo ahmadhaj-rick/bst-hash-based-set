@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from logging import root
 from typing import Any
 
 # The BstMap class is a binary search tree based implementation of
@@ -20,13 +19,7 @@ class Node:
     right: Any = None       # right child (a Node)
 
     def put(self, key, value):
-        if self.key < key:
-            if self.left is None:
-                self.left = Node(key, value, None, None)
-            elif self.left is not None:
-                 
-        
-        # Placeholder code ==> to be replaced
+        pass       # Placeholder code ==> to be replaced
 
     def to_string(self):
         return ""  # Placeholder code to avoid crash in demo program. To be replaced
@@ -64,7 +57,7 @@ class BstMap:
             self.root = Node(key, value, None, None)
         else:
             self.root.put(key, value)
-            
+
     # Returns a string representation of all the key-value pairs
     def to_string(self):
         if self.root is None:     # Empty, return empty brackets
