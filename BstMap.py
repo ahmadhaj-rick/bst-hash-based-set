@@ -19,10 +19,45 @@ class Node:
     right: Any = None       # right child (a Node)
 
     def put(self, key, value):
-        pass       # Placeholder code ==> to be replaced
+        if key == self.key: # to replace the values
+            self.value = value
+        elif key < self.key: # we going left side 
+            if self.left is None:
+                self.left = Node(key, value)
+            else:
+                self.left.put(key, value)
+        else: # we going right side 
+            if self.right is None:
+                self.right = Node(key, value)
+            else:
+                self.right.put(key, value)
+
+
 
     def to_string(self):
-        return ""  # Placeholder code to avoid crash in demo program. To be replaced
+        # i need to keep digging in recursive calls till last/smallest
+        # key and when i hit that condition, before close the call i need 
+        # to print the value then go up in the calls 
+        
+        def left_to_string(self):
+
+            if self.left is not None:
+                self.left.to_string()
+            node_data1 = "(" + self.key +"," + str(self.value) + ") "
+            return node_data1
+        
+        def right_to_string(self):
+
+            if self.right is not None:
+                self.right.to_string()
+            node_data2 = "(" + self.key +"," + str(self.value) + ") "
+            return node_data2
+        if self.left is not None:
+            left_to_string(self.left)
+
+        if self.right is not None:
+            left_to_string(self.right)
+
 
     def count(self):
         pass       # Placeholder code ==> to be replaced
