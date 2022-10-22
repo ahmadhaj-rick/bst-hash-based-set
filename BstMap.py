@@ -17,6 +17,8 @@ class Node:
     value: Any = None       # the value
     left: Any = None        # left child (a Node)
     right: Any = None       # right child (a Node)
+    size = 0                 # number of nodes
+
 
     def put(self, key, value):
         if key == self.key: # to replace the values
@@ -39,28 +41,32 @@ class Node:
         # key and when i hit that condition, before close the call i need 
         # to print the value then go up in the calls 
         
-        def left_to_string(self):
-
-            if self.left is not None:
-                self.left.to_string()
-            node_data1 = "(" + self.key +"," + str(self.value) + ") "
-            return node_data1
+        if self.left is not None: # once its None the call breaks and goes up
+            self.left.to_string()
         
-        def right_to_string(self):
-
-            if self.right is not None:
-                self.right.to_string()
-            node_data2 = "(" + self.key +"," + str(self.value) + ") "
-            return node_data2
-        if self.left is not None:
-            left_to_string(self.left)
-
+        # need to figure out how to return with out exiting :/
+        # yield dont work, becomes a generator
+        node_data = "(" + self.key +"," + str(self.value) + ") "
+        print(node_data) 
+        
         if self.right is not None:
-            left_to_string(self.right)
+            self.right.to_string()
+        
+        return node_data
 
 
     def count(self):
-        pass       # Placeholder code ==> to be replaced
+        # size rest when it goes up the recursive stack call :/
+        # i'm doing the order of operation wrong ??
+        if self.left is not None:
+            self.size += 1
+            self.left.count()
+            
+        if self.right is not None:
+            self.size += 1
+            self.right.count()
+            
+        return self.size
 
     def get(self, key):
         pass    # Placeholder code ==> to be replaced
