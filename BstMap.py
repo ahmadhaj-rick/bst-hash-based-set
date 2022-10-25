@@ -35,49 +35,58 @@ class Node:
             else:
                 self.right.put(key, value)
 
-    s = ""
+
 
     def to_string(self):
         # i need to keep digging in recursive calls till last/smallest
         # key and when i hit that condition, before close the call i need 
         # to print the value then go up in the calls
         # node = self 
-        
-        if self.left is not None: # once its None the call breaks and goes up
-            # self = self.left
+    
+        """ if self.left is not None: # once its None the call breaks and goes up
+            self = self.left
             self.to_string()
-        self.s = "(" + self.key + "," + str(self.value) + ")"
+        s = "(" + self.key + "," + str(self.value) + ")"
 
 
         if self.right is not None:
-            # self = self.right
-            self.to_string()
+            self = self.right
+            s += self.to_string() """
         
-        return self.s
+        return "Empty for now"
+    
+        
 
 
     def count(self):
         # size rest when it goes up the recursive stack call :/
         # i'm doing the order of operation wrong ??
+        # l = self.left
+        # r= self.right
         if self.left is not None:
             self.left.count()
-            self.size += 1
-            
+        self.size += 1
         if self.right is not None:
-            self.right.count()
-            self.size += 1
+            self.right.count() + 1
         
         return self.size
 
     def get(self, key):
-        pass
         if self.key == key:
-            return self.value
-        if key < self.key:
-            self = self.left
-            self.get(key)
-        if key > self.key:
-            self.get(key)
+            return str(self.value)
+        elif key < self.key:
+            if self.left is not None:
+                # left = self.left
+                self.left.get(key)
+            elif self.key == key:
+                return str(self.value)
+        elif key > self.key:
+            if self.right is not None:
+                # right = self.right
+                self.right.get(key)
+            elif self.key == key:
+                return str(self.value)
+        
 
     def max_depth(self):
         pass     # Placeholder code ==> to be replaced
