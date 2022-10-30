@@ -19,6 +19,7 @@ class Node:
     left: Any = None        # left child (a Node)
     right: Any = None       # right child (a Node)
     size = 0                 # number of nodes
+    s: str = " "
 
 
     def put(self, key, value):
@@ -42,62 +43,84 @@ class Node:
         # key and when i hit that condition, before close the call i need 
         # to print the value then go up in the calls
         # node = self 
-    
-        """ if self.left is not None: # once its None the call breaks and goes up
-            self = self.left
-            self.to_string()
-        s = "(" + self.key + "," + str(self.value) + ")"
+        # once its None the call breaks and goes up
 
-
+        if self.left is not None: 
+            self.left.to_string()
+        self.s += "(" + self.key + "," + str(self.value) + ")"
+        # print(s)
         if self.right is not None:
-            self = self.right
-            s += self.to_string() """
+            self.right.to_string()
         
-        return "Empty for now"
+        return self.s
     
         
 
 
     def count(self):
-        # size rest when it goes up the recursive stack call :/
-        # i'm doing the order of operation wrong ??
-        # l = self.left
-        # r= self.right
+        # since it sat size to zero evertime
+        # i used it as a incrment
+        # i sat self.size = 1 !!
+        self.size = 1
         if self.left is not None:
-            self.left.count()
-        self.size += 1
+            self.size += self.left.count()
         if self.right is not None:
-            self.right.count() + 1
+            self.size += self.right.count()
         
         return self.size
 
     def get(self, key):
         if self.key == key:
-            return str(self.value)
+            return self.value
         elif key < self.key:
             if self.left is not None:
-                # left = self.left
-                self.left.get(key)
-            elif self.key == key:
-                return str(self.value)
+                return self.left.get(key)
+            else:
+                return None
         elif key > self.key:
             if self.right is not None:
-                # right = self.right
-                self.right.get(key)
-            elif self.key == key:
-                return str(self.value)
+                return self.right.get(key)
+            else:
+                return None
         
 
     def max_depth(self):
-        pass     # Placeholder code ==> to be replaced
+        left_side = 0
+        right_side = 0
+        # reach the bottom 
+        if self.left is not None:
+            left_side = self.left.max_depth()
+        if self.right is not None:
+            right_side = self.right.max_depth()
+
+        # count going up the recursive call 
+        if left_side > right_side:
+            return left_side + 1
+        else:
+            return right_side + 1
+        
 
     def count_leafs(self):
-        pass     # Placeholder code ==> to be replaced
+        leafs = 0
+        if self.left is None and self.right is None:
+            leafs += 1
+        if self.left:  # dig left
+            leafs += self.left.count_leafs()
+        if self.right: # dig right
+            leafs += self.right.count_leafs()
+
+        return leafs
 
     # We do a left-to-right in-order traversal of the tree
     # to get the key-value pairs sorted base on their keys
     def as_list(self, lst):
-        return [None]    # Placeholder code to avoid crash in demo program. To be replaced
+        if self.left is not None:
+            self.left.as_list(lst)
+        lst.append((self.key, self.value))
+        if self.right is not None:
+            self.right.as_list(lst)
+        
+        return lst    # Placeholder code to avoid crash in demo program. To be replaced
 
 
 # The BstMap class is rather simple. It basically just takes care
