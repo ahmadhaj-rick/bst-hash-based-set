@@ -85,15 +85,25 @@ class HashSet:
     # Removes word from set if there, does nothing
     # if word not in set
     def remove(self, word):
-        pass    # Placeholder code ==> to be replaced
+        if self.contains(word) is True:
+            pos = self.get_hash(word)
+            self.buckets[pos].remove(word)
+            self.size -= 1
+
 
     # Returns the size of the bucket with most elements
     def max_bucket_size(self):
         # this is the oppesit of the zero buckets. 
         # see each len(self.buckets[i]) and store and compare with the next 
         # until we have final biggest len(self.buckets[i])
-        # i'll be back here 
-        pass    # Placeholder code ==> to be replaced
+        # i'll be back here
+        bucket_size = 0
+
+        for i in range(len(self.buckets)):
+            if len(self.buckets[i]) > bucket_size:
+                bucket_size = len(self.buckets[i])
+            
+        return bucket_size
 
     # Returns the ratio of buckets of lenght zero.
     # That is: number of zero buckets divided by number of buckets
@@ -102,4 +112,9 @@ class HashSet:
         # we count each time we hit a zero buckets then see our overall size 
         # divid the zero-buckets // len(self.buckets)
         # i'll be back here 
-        pass    # Placeholder code ==> to be replaced
+        empty_buckets = 0
+        for i in range(len(self.buckets)):
+            if len(self.buckets[i]) == 0:
+                empty_buckets += 1
+        ratio = empty_buckets // len(self.buckets)
+        return ratio
