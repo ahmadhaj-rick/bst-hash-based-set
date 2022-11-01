@@ -19,7 +19,7 @@ class Node:
     left: Any = None        # left child (a Node)
     right: Any = None       # right child (a Node)
     size = 0                 # number of nodes
-    s: str = " "
+
 
 
     def put(self, key, value):
@@ -44,15 +44,15 @@ class Node:
         # to print the value then go up in the calls
         # node = self 
         # once its None the call breaks and goes up
+        s = ""
 
         if self.left is not None: 
-            self.left.to_string()
-        self.s += "(" + self.key + "," + str(self.value) + ")"
-        # print(s)
+            s += self.left.to_string()
+        s += "(" + self.key + "," + str(self.value) + ")"
         if self.right is not None:
-            self.right.to_string()
+           s += self.right.to_string()
         
-        return self.s
+        return s
     
         
 
