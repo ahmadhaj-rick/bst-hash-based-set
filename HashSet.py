@@ -112,5 +112,5 @@ class HashSet:
         for i in range(len(self.buckets)):
             if len(self.buckets[i]) == 0:
                 empty_buckets += 1
-        ratio = empty_buckets // len(self.buckets)
+        ratio = empty_buckets / len(self.buckets)
         return ratio
