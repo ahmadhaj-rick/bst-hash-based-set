@@ -54,7 +54,7 @@ brain_hssh = create_hash_set(brain)
 print("Life of Brain Hash Set")
 print(f"Bucket list size: {brain_hssh.bucket_list_size()}")
 print(f"Max bucket size: {brain_hssh.max_bucket_size()}")
-print(f"Zero bucket ratio: {brain_hssh.max_bucket_size()}")
+print(f"Zero bucket ratio: {brain_hssh.zero_bucket_ratio()}")
 print()
 
 # brain bst OP
@@ -72,7 +72,7 @@ print("Swedish News Hash Set")
 
 print(f"Bucket list size: {swe_hash.bucket_list_size()}")
 print(f"Max bucket size: {swe_hash.max_bucket_size()}")
-print(f"Zero bucket ratio: {swe_hash.max_bucket_size()}")
+print(f"Zero bucket ratio: {brain_hssh.zero_bucket_ratio()}")
 print()
 
 # swedish news bst OP
