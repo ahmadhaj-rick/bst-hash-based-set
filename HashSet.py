@@ -19,7 +19,6 @@ class HashSet:
         for l in word:
             count += 1
             hashh += ord(l) * count # get the ascii value and just add it
-        hashh *= len(word)
         # postion to add in the bucket, using the len of buckets we have as mod
         pos = hashh % len(self.buckets)
         return pos
