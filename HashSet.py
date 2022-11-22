@@ -15,8 +15,11 @@ class HashSet:
     # Computes hash value for a word (a string)
     def get_hash(self, word):
         hashh = 0  # hash of a word
+        count = 0
         for l in word:
-            hashh += ord(l)  # get the ascii value and just add it
+            count += 1
+            hashh += ord(l) * count # get the ascii value and just add it
+        hashh *= len(word)
         # postion to add in the bucket, using the len of buckets we have as mod
         pos = hashh % len(self.buckets)
         return pos
