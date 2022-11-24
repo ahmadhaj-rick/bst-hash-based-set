@@ -19,11 +19,8 @@ The text should include:
 - We had two different results for each file but they were in close proximity.
 - Ahmad Al Haj : ``life_of_brian: 13335 words`` and ``swedish_news_2020: 14133030``
 - Ahmad Fahim : ``life_of_brian: 13433 words`` and ``swedish_news_2020: 16360080``
-- 
-- How did you implement the Top-10 part of the problem. Feel free to show code fragments.
-- Present a unique word count and the Top-10 lists for each of the two files.
 
-In this part we created a function that takes file name and current path as input then we open the file in read mode
+We created a function that takes file name and current path as input then we open the file in read mode
 we initiate an empty dictionary, set and list vars.
 we use the set class to figure out the unique words since sets dont allow dublicts.
 
