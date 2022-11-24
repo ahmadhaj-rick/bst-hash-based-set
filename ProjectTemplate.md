@@ -1,67 +1,47 @@
 
-### About Markdown
-
-Markdown is an easy-to-use plain text formatting syntax created by John Gruber.
-
-To write a text in Markdown you need a Markdown editor. Fortunately VS Code comes with an easy-to-use Markdown editor. Hence, open a markdown file (.md file) in VS code and press ``preview`` in the upper right corner and you will see the Markdown code side-by-side with a view showing the rendered text.
-
-To get started using Markdown we suggest that you open the file you are currently reading (ProjectTemplate.md), or (better) [this file](https://homepage.lnu.se//staff/jlnmsi/python/2021/Macdown.zip), in a Markdown editor and compare the rendered result with the given markdown code. Then Google various markdown tutorials to understand markdown symbols that are not obvious from the given examples. A few examples:
-
-Python code markup:
-
-```python
-def max(a,b):
-	if a > b:
-		return a
-	else:
-		return b
-```
-
-Inserting images (using HTML markup):
-
-<img src="http://homepage.lnu.se/staff/jlnmsi/python/2020/cos_sin.png" width="400"/>
-
-
-This is a table with left- , center-, and right-allgned columns:
-
-| Left Aligned  | Center Aligned  | Right Aligned |
-|:------------- |:---------------:| -------------:|
-| col 3 is      | some wordy text |         $1600 |
-| col 2 is      | centered        |           $12 |
-| zebra stripes | are neat        |            $1 |
-
-The left- and right-most pipes (`|`) are only aesthetic, and can be omitted. The spaces don’t matter, either. Alignment depends solely on `:` marks in the lines under the column titles.
-
-## Regarding the report template
-
-The template below is in English. Feel free to write your report in Swedish or English. 
-
-We expect each team to present their report as their README.md in the Gitlab repository.
-
-Try to be short and precise. We expect more than 2000, but less than 4000, words. 
-
-Assume that the reader knows about Python. Give a reference and explain techniques introduced that we havn't presented in the course.
-
-In what follow we give you the **mandatory report headlines** and brief comments about what we expect each section to contain. Make sure to remove our comments (and the Markdown intro above) in your final report.
-
-
-************************
-
 # Mini-project report 
-Members: Donald Duck and Mickey Mouse  
-Program: Software Technology  
+Members: Ahmad AlHaj Hussain, Ahmad Fahim 
+Program: Network Security
 Course: 1DV501 or 1DT901  
-Date of submission: 2022-11-XX
+Date of submission: 2022-11-24
 
 ## Introduction  
-A brief introduction including a presentation of the project tasks. Present the project as a part of the course 1DV501/1DT901.  
+A simple project implementing Hash Set And Binary search Tree using recursion.
+The Porject had three parts
+- Part 1 : We used python's set class and dictionary to find count of unique words in a give word list
+and produce Top 10 list of words that has lenght larger than 4
+- Part 2 : Using the a given skeleton, we implemented Binary search tree and Hash based set.
+- Part 3 : We repeated Part 1 but this time using our own DS [Hash set , Binary Search Tree]
+1DV501/1DT901.  
 
 ## Part 1: Count unique words 1
 The text should include:
-- How many words did each of the two text files 
-``life_of_brian`` and ``swedish_news_2020`` have?
+- We had two different results for each file but they were in close proximity.
+- Ahmad Al Haj : ``life_of_brian: 13335 words`` and ``swedish_news_2020: 14133030``
+- Ahmad Fahim : ``life_of_brian: 13433 words`` and ``swedish_news_2020: 16360080``
+- 
 - How did you implement the Top-10 part of the problem. Feel free to show code fragments.
 - Present a unique word count and the Top-10 lists for each of the two files.
+
+In this part we created a function that takes file name and current path as input then we open the file in read mode
+we initiate an empty dictionary, set and list vars.
+we use the set class to figure out the unique words since sets dont allow dublicts.
+
+<img src="https://snipboard.io/297OuF.jpg" width="400"/>
+
+While dictionary and list, to find out top ten using thier occurence frequency.
+we check for thier lenght, and if we dont have it we add to the dic other wise we increase the frequency
+<img src="https://snipboard.io/N8wu96.jpg" width="400"/>
+
+then simply print the values we have for each file. 
+
+<img src="https://snipboard.io/5seVx3.jpg" width="400"/>
+
+The Results Are shown below:
+
+<img src="https://snipboard.io/tdU47E.jpg" width="400"/>
+
+
 
 ## Part 2: Implementing data structures
 - Give a brief presentation of the given requirements
