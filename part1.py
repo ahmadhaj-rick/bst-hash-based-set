@@ -6,9 +6,11 @@ import os
 #guidelines for this program.
 
 main_path = os.getcwd() # Getting the current path that will help integrate the 2 textfiles.
-Brain_file = 'life_of_13433_brian.txt'
-Swedish_file = 'swe_16360080_news.txt'
+# Brain_file = 'life_of_13433_brian.txt'  # Fahim list
+# Swedish_file = 'swe_16360080_news.txt'  # Fahim list
 
+Brain_file = "brain_13335_words.txt"
+Swedish_file = "swe_14133030_news"
 
 def get_value(tpl): 
     return tpl[1]
