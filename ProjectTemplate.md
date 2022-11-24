@@ -30,7 +30,7 @@ we use the set class to figure out the unique words since sets dont allow dublic
 <img src="https://snipboard.io/297OuF.jpg" width="400"/>
 
 While dictionary and list, to find out top ten using thier occurence frequency.
-we check for thier lenght, and if we dont have it we add to the dic other wise we increase the frequency
+we check for thier lenght, and if we dont have it we add to the dic other wise we increase the frequency.
 
 <img src="https://snipboard.io/N8wu96.jpg" width="400"/>
 
