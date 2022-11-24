@@ -4,6 +4,10 @@ supreme_route = os.getcwd()
 # We store the targeted files into the variables
 Brain_file = 'life_of_13433_brian.txt'
 Swedish_file = 'swe_16360080_news.txt'
+
+# Brain_file = "brain_13335_words.txt"  # Ahmad Haj Files(aa226un)
+# Swedish_file = "swe_14133030_news"  # Ahmad Haj Files (aa226un)
+
 # Function intends to return the 2nd value,
 #while indexing 1 value from the list tpl
 def get_value(tpl): 
