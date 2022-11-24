@@ -67,6 +67,7 @@ swe_news = opening_files("swe_14133030_news")
 # brain hash set OP
 brain_hssh = create_hash_set(brain)
 print("Life of Brain Hash Set")
+print(f"Size of the buckets: {brain_hssh.get_size()}")
 print(f"Bucket list size: {brain_hssh.bucket_list_size()}")
 print(f"Max bucket size: {brain_hssh.max_bucket_size()}")
 print(f"Zero bucket ratio: {round(brain_hssh.zero_bucket_ratio(), 2)}")
@@ -84,7 +85,7 @@ print()
 # swedish news hash set OP
 swe_hash = create_hash_set(swe_news)
 print("Swedish News Hash Set")
-
+print(f"Size of the buckets: {swe_hash.get_size()}")
 print(f"Bucket list size: {swe_hash.bucket_list_size()}")
 print(f"Max bucket size: {swe_hash.max_bucket_size()}")
 print(f"Zero bucket ratio: {round(swe_hash.zero_bucket_ratio(), 2)}")
