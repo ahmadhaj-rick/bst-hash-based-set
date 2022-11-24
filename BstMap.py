@@ -17,29 +17,93 @@ class Node:
     value: Any = None       # the value
     left: Any = None        # left child (a Node)
     right: Any = None       # right child (a Node)
+    size = 0                 # number of nodes
 
     def put(self, key, value):
-        pass       # Placeholder code ==> to be replaced
+        if key == self.key:  # to replace the values
+            self.value = value
+        elif key < self.key:  # we going left side
+            if self.left is None:
+                self.left = Node(key, value)
+            else:
+                self.left.put(key, value)
+        else:  # we going right side
+            if self.right is None:
+                self.right = Node(key, value)
+            else:
+                self.right.put(key, value)
 
     def to_string(self):
-        return ""  # Placeholder code to avoid crash in demo program. To be replaced
+        s = ""  # empty string
+
+        if self.left is not None:  # going left till none
+            s += self.left.to_string()  # recursive dig
+        s += "(" + self.key + "," + str(self.value) + ")"  # add values
+        if self.right is not None:  # going right till none
+            s += self.right.to_string()  # add value
+
+        return s
 
     def count(self):
-        pass       # Placeholder code ==> to be replaced
+        self.size = 1  # counter init
+
+        if self.left is not None:  # dig left
+            self.size += self.left.count()  # add size to itself [+1]
+        if self.right is not None:  # dig right
+            self.size += self.right.count()  # add size to itself [+1]
+
+        return self.size
 
     def get(self, key):
-        pass    # Placeholder code ==> to be replaced
+        if self.key == key:  # gaurd statment
+            return self.value
+        elif key < self.key:  # dig left
+            if self.left is not None:
+                return self.left.get(key)  # end up at the guard statment
+            else:
+                return None
+        elif key > self.key:  # dig right
+            if self.right is not None:
+                return self.right.get(key)  # end up at the guard statment
+            else:
+                return None
 
     def max_depth(self):
-        pass     # Placeholder code ==> to be replaced
+        left_side = 0
+        right_side = 0
+        # reach the bottom
+        if self.left is not None:
+            left_side = self.left.max_depth()
+        if self.right is not None:
+            right_side = self.right.max_depth()
+
+        # count going up the recursive call
+        if left_side > right_side:
+            return left_side + 1
+        else:
+            return right_side + 1
 
     def count_leafs(self):
-        pass     # Placeholder code ==> to be replaced
+        leafs = 0
+        if self.left is None and self.right is None:  # guard statment
+            leafs += 1
+        if self.left:  # dig left
+            leafs += self.left.count_leafs()  # end up at gaurd statement
+        if self.right:  # dig right
+            leafs += self.right.count_leafs()  # end up at guard statment
+
+        return leafs
 
     # We do a left-to-right in-order traversal of the tree
     # to get the key-value pairs sorted base on their keys
     def as_list(self, lst):
-        return [None]    # Placeholder code to avoid crash in demo program. To be replaced
+        if self.left is not None:  # dig left
+            self.left.as_list(lst)
+        lst.append((self.key, self.value))
+        if self.right is not None:  # dig right
+            self.right.as_list(lst)
+
+        return lst
 
 
 # The BstMap class is rather simple. It basically just takes care
@@ -91,7 +155,7 @@ class BstMap:
         else:
             return self.root.max_depth()
 
-    # Returns a leaf node count. That is, the number of nodes 
+    # Returns a leaf node count. That is, the number of nodes
     # with no children
     def count_leafs(self):
         if self.root is None:
