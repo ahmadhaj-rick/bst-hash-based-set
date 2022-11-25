@@ -42,11 +42,117 @@ The Results Are shown below:
 
 
 ## Part 2: Implementing data structures
-- Give a brief presentation of the given requirements
-- For the hash based word set (HashSet), present (and explain in words):
- 	* Python code for function ``add``, how to compute the hash value, and rehashing.
- 	* Point out and explain any differences from the given results in ``hash_main.py``
- 	
+- The BST based map is a linked implementation where each node has four fields (key, value, left-child, right-child).
+- The hash-based set is built using a Python list to store the buckets where each bucket is another Python list. 
+  The initial bucket list size is 8 and rehashing (double the bucket list size) takes place when the number of elements equals the number of buckets.
+
+- For the hash based word set (HashSet):
+- ``get_hash():``
+ in this function we take a string as input, then using the ascii value of each char in the string
+adding those value toghter will give us a number but to increase the uniquenss of the that hash 
+we have a counter that increase by 1 each iteration of char and a magic constant number. 
+using those two values we create a number that is constant enought but will make the value of 
+``CAT`` AND ``TAC`` wont be the same.
+
+```
+# Computes hash value for a word (a string)
+    def get_hash(self, word):
+        hashh = 0  # hash of a word
+        count = 0
+        for ch in word:
+            count += 1
+            # get the ascii value, multiplite by count plus const 600
+            # count will increase by len(word), while 600 is a number
+            # to increase uniquness.
+            hashh += ord(ch) * (count + 600)
+        # postion to add in the bucket, using the len of buckets we have as mod
+        pos = hashh % len(self.buckets)
+        return pos
+```
+
+- ``rehash():``
+
+    in the rehash we copy the old buckets into a tmp bucket, then we create new buckets twice the size of the old ones.
+    starting buckets init is : [ [] for i in range(8) ], we simple use that in range of the len(old buckets)
+    doubling the size : [ [] for i in range(0, len(self.buckts) *2) ] then rest the size to = 0
+    after that we starting adding the old elements to the new buckets using the function ``add()`` that will take care of 
+    the new size too.
+    
+    ```
+    def rehash(self):
+        origin_buckt = self.buckets  # make a copy of the original buckts
+
+        # double the size of the buckts [len(buckts) * 2]
+        # we can take the same formula as init buckts
+        # [[] for i in range(8)] -> [[] for i in range(0, len(self.buckts) *2)]
+        # copy old buckts to the new one.
+        # reset the size since its new buckets
+
+        self.size = 0
+        self.buckets = [[] for i in range(0, len(self.buckets) * 2)]
+
+        # copy the old to the new
+        for i in origin_buckt:  # point to each buckt in buckts
+            for words in i:  # point the word inside buckt from buckts
+                self.add(words)  # send the word to the add
+    ```
+
+- ``add():``
+    the add function takes string as input, try to get a hash by passing the string to get_hash(word)
+    after getting the hash we check if we have the word in our buckets by passing it to contains(). 
+    if we dont have it, then we check if we have have enough buckets. if we dont we trigger a rehash.
+    otherwise we just append the word to our buckets using the hash value as index.
+
+    ```
+    def add(self, word):
+        pos = self.get_hash(word)  # pos
+        # check if the word is already in a bucket
+        if self.contains(word) is False:
+            # check if we maxed our buckets.
+            if self.size == len(self.buckets):
+                self.rehash()  # rehash [double the size, copy old to new]
+                self.add(word)  # try to add the word again.
+            # we didnt max ? then just add the word.
+            else:  # self.size != len(self.buckets)
+                self.buckets[pos].append(word)  # add the word
+                self.size += 1  # increase our size counter
+
+    ```
+
+ * Point out and explain any differences from the given results in ``hash_main.py``
+    * the expected output: 
+        ```
+        to_string(): { Adam David Amer Ceve Owen Ella Jonas Morgan Fredrik Zoe Fred Albin Ola Simon }
+        get_size(): 14
+        contains(Fred): True
+        contains(Bob): False
+
+        max bucket: 2
+        bucket list size: 16
+        zero bucket ratio: 0.38
+
+        get_size: 10
+        to_string(): { David Amer Owen Ella Morgan Fredrik Zoe Fred Albin Simon }
+        ```	
+
+    * Our output:
+        ```
+        to_string(): { David Fred Ella Morgan Zoe Adam Albin Ola Amer Ceve Owen Jonas Fredrik Simon  }
+        get_size(): 14
+        contains(Fred): True
+        contains(Bob): False
+
+        max bucket: 2
+        bucket list size: 16
+        zero bucket ratio: 0.25
+
+        get_size: 10
+        to_string(): { David Fred Ella Morgan Zoe Albin Amer Owen Fredrik Simon  }
+        ```
+        We can see the order of the to_string and zero_bucket ratio is not the same. And that is because of how the hash 
+        function is implemented, getting different values will change the indexing, and effectiveness
+
+
 - For the BST based map (BstMap), present (and explain in words):
  	* Python code for the two functions ``put`` and ``max_depth``.
  	* Point out and explain any differences from the given results in ``bst_main.py``.
