@@ -153,9 +153,59 @@ using those two values we create a number that is constant enought but will make
         function is implemented, getting different values will change the indexing, and effectiveness
 
 
-- For the BST based map (BstMap), present (and explain in words):
- 	* Python code for the two functions ``put`` and ``max_depth``.
- 	* Point out and explain any differences from the given results in ``bst_main.py``.
+- For the BST based map (BstMap):
+
+``put():``
+    this function, takes key, and value as input.
+    we use gaurd statment at the start of the fucntion since we going to be call it recursivly. 
+    
+    1- check if the input key is the same as the key we checking against.
+
+    2- else we check if its less so we can go left which will take use to see if there is no left node if true we create a node with the inputted key, value otherwise we go to the else.
+    
+    3- the else is a recursive call to the method it self on the left node of the current node we are at.
+    that will repeate steps 1 to 3.
+    
+    but if step 2 fails then we go to else that will handle it as right side move. which will do steps 1 and 2,
+    until one of the calls ethier ends at creating a new node or updating a node at that point the call will exit.
+        ```
+            def put(self, key, value):
+        if key == self.key:  # to replace the values
+            self.value = value
+        elif key < self.key:  # we going left side
+            if self.left is None:
+                self.left = Node(key, value)
+            else:
+                self.left.put(key, value)
+        else:  # we going right side
+            if self.right is None:
+                self.right = Node(key, value)
+            else:
+                self.right.put(key, value)
+        ```
+
+``max_depth()``
+this function takes the root node as starting point, we have two vars that register the count of each node while digging down the tree recursivly, we go left until we hit a None, then we head right until we reach the bottom or a leaf that has no left AND right. then we count up the recursive call while keeping score of left and right itirations. after each big exit of recursive call we compare left and right we decide who to increment by check if left_side is bigger than right after each recursive call.
+
+```
+def max_depth(self):
+        left_side = 0
+        right_side = 0
+        # reach the bottom
+        if self.left is not None:
+            left_side = self.left.max_depth()
+        if self.right is not None:
+            right_side = self.right.max_depth()
+
+        # count going up the recursive call
+        if left_side > right_side:
+            return left_side + 1
+        else:
+            return right_side + 1
+```
+Point out and explain any differences from the given results in ``bst_main.py``.
+
+There is no differences from the expected output and our output.
 
 ## Part 3: Count unique words 2
 - How did you implement the Top-10 part of the problem. Feel free to show code fragments.
