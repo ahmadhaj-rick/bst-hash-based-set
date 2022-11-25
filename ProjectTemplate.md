@@ -208,26 +208,145 @@ Point out and explain any differences from the given results in ``bst_main.py``.
 There is no differences from the expected output and our output.
 
 ## Part 3: Count unique words 2
-- How did you implement the Top-10 part of the problem. Feel free to show code fragments.
-- Present a unique word count and the Top-10 lists for each of the two files.
-* What is the bucket list size, max bucket size and zero bucket ratio for HashSet, and the total node count, max depth and leaf count for BstMap, after having added all the words in the two large word files? (Hence, eight different numbers.)
-* Explain how max bucket size and zero bucket ratio can be used to evaluate the quality of your hash function in HashSet. What are optimal/reasonable/poor values in both cases?
-* Explain how max depth and leaf count can be used to evaluate the efficiency of the BstMap. What are optimal/reasonable/poor values in both cases?
+- implementting the Top-10:
+
+    We created a function that takes a list of key value pairs as input.
+    1- we have a gaurd if statment that checks if our counter has counted 10 iteams.
+    
+    2- elif we check if the 0 index value [which is the key] has a len bigger than 4, if True we increamnet our counter and loop again until we have all keys of lenght bigger than 4 in a list. 
+    ```
+    def top_ten(lst):
+        iteams, counter = "", 0
+        for x in lst:
+            # we have the break check here to avoid an extra result
+            if counter == 10:
+                break
+            elif len(x[0]) > 4:  # checks if the key is bigger than 4 char
+                counter += 1
+                iteams += f"{x[0]}, {x[1]}\n"
+        return iteams
+    ```
+
+    3- then we sort the list by its value value in reverse order which means highest to lowest. And Print our findings.
+    ```
+    # sort the list using the value [1], while keys[0].
+    # going higest to lowest using the reverse=True
+    sort_swe_lst = sorted(swe_lst, key=itemgetter(1), reverse=True)
+    ```
+
+- The unique word count for both file are same as Part1 result:
+    ``Life Of Brain:``
+
+        ```
+        Top Ten for brain: 
+        brian, 366
+        crowd, 161
+        centurion, 121
+        mother, 103
+        right, 100
+        crucifixion, 78
+        pilate, 68
+        pontius, 64
+        rogers, 52
+        there, 44
+        ```
+    ``Swedish News: ``
+    
+        ```
+        Top ten for swedish news: 
+        säger, 47512
+        under, 45081
+        kommer, 42247
+        efter, 36582
+        eller, 30851
+        också, 30113
+        andra, 27176
+        finns, 26967
+        sedan, 24909
+        skulle, 23530
+        ```
+
+* HashSet results for both files:
+    - Life of brain:
+        ```
+        Size of the buckets: 2028
+        Bucket list size: 2048
+        Max bucket size: 6
+        Zero bucket ratio: 0.38
+        ```
+    - Swedish News: 
+        ```
+        Size of the buckets: 362946
+        Bucket list size: 524288
+        Max bucket size: 18
+        Zero bucket ratio: 0.6
+        ```
+* Bst Map results for both files:
+    - Life of brain:
+        ```
+        Number of tree nodes: 2028
+        Max depth: 27
+        Leaf count: 656
+        ```
+    - Swedish News: 
+        ```
+        Number of tree nodes: 362946
+        Max depth: 46
+        Leaf count: 119482
+        ```
+* How max bucket size and zero bucket ratio can be used to evaluate the quality of the hash function in HashSet?
+
+    Those two numbers can show use the number of unused buckets hence our unique hash production that will determine the distrubation of the iteams across the buckets. in contrast max bucket size will show how many buckets we have that will conribute to the space size on disk of our operation. 
+    taking those two factors intp account, optimizing our hash fucntion can help, reduce space size and operation time.
+
+* how max depth and leaf count can be used to evaluate the efficiency of the BstMap?
+
+    Those two values will show how balanced our tree is if one side is deeper than the other or if we have too many lone nodes [leafs], in perfect word we would want a perfeclty balanced tree of equal wieghts on both sides left and right.
 
 
 ## Project conclusions and lessons learned
 We separate technical issues from project related issues.
 ### Technical issues 
 - What were the major technical challanges as you see it? What parts were the hardest and most time consuming?
+
+    The project was fun to work on, we would say the hardest was:
+    1- Understanding recursive functions and how they work.
+    2- coming up with a unique enough hash function, took alot of expermenting.
+
+
 - What lessons have you learned? What should you have done differently if you now were facing a similar problem.
+
+    1- Always have a paper and pen right beside, writing things and drawing them, helps in understanding the problem you trying to solve.
+    2- break down problems into smaller problems and solve bite size.
+    3- nothing wrong with spending half the time researching and looking up concepts online. Afterall you can't use a tool you dont fully understand.
+    [Dont Shoot your self in the leg]
 - How could the results be improved if you were given a bit more time to complete the task.
 
+    We'd work more on the Hash fucntiong, try to make it a uniqe as possible but its a broad subject and field that requires alot of advanced math.
+    
+    try to fiter and organize the word list more, to squeeze as much as possible data. 
+
 ### Project issues
-- Describe how your team organized the work. How did you communicate? How often did you communicate?
-- For each individual team member: 
- 	* Describe which parts (or subtasks) of the project they were responsible for. Consider writing the report as a separate task. Try to identify main contributors and co-contributors.
- 	* Estimate hours spend each week (on average)
+
+We meet up 3 times a week, and used Whatsapp/TeamViewer when ever possible
+we compared notes, and exchanged ideas. How to make the progam more coherent and compatable.
+
+``Main-contributor Ahmad Al Haj``  
+I worked on Part 2 and 3, while discussing and reflecting ideas with my partner, we reached a working solution. 
+I have advanced my skills using recursive functions, and with in hashing from a practical script-kiddie levelish to a real understanding which makes me want to revist HashCat toolset. so it was refreshing.
+
+i spent around 15 to 20 hours a week mainly with my partner.
+
+i'd plot out the idea on paper on pen, breaking it down to smaller sets of problems then approach it.
+    
+``Co-contributor Ahmad Fahim:``
+    
+My main fouces was part one, but we collabrated and discussed two and three, since there is a big skill gap. i have learned alot on the way and as a team we got the work done. Hopefully on the next project we will level the playinig field.
+    
+On my side of the project, i spent around 30-40 hours per week. it was my main fouces.
+    
+I'd take part more often in the tutoring sessions, And use the support to save time and avoid over engeneering the code.
+    
+ * Describe which parts (or subtasks) of the project they were responsible for. Consider writing the report as a separate task. Try to identify main contributors and co-contributors.
+ * Estimate hours spend each week (on average)
  - What lessons have you learned? What should you have done differently if you now were facing a similar project.
-
-
-
