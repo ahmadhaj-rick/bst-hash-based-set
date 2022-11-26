@@ -36,7 +36,7 @@ then simply print the values we have for each file.
 
 The Results Are shown below:
 
-<img src="https://snipboard.io/tdU47E.jpg" width="400"/>
+<img src="https://snipboard.io/tdU47E.jpg" width="200"/>
 
 
 
